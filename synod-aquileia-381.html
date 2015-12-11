@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Synode von Aquileia 381</title>
+	<meta name="description" content="Map of the participants at the synod of Aquileia in 381">
+  <meta name="keywords" content="Map,Synod,Aquileia,381">
+  <meta name="author" content="Annette von Stockhausen">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+	p {font-family: sans-serif;}
+	h1 {font-family: sans-serif;
+		font-size: 150%;}
+	</style>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+</head>
+<body>
+	<h1>Teilnehmer der Synode von Aquileia 381</h1>
+	<div id="map" style="width: 1000px; height: 500px"></div>
+	<p>Quelle: Athanasius Werke III.6, Dok. 93.8</p>
+	<p>Bischofsort nicht identifizierbar: Machedonius, Almacius, Januarius, Jovinus, 
+	Maximinus, Felix (Africa), Viator, Maximus, Efesius, Numidius (Africa), Artemius, Felix</p>
+	<script src="aquileia381.js" type="text/javascript"></script>
+	<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+	<script src="https://cdn.jsdelivr.net/leaflet.esri/1.0.0/esri-leaflet.js"></script>
+	<script>
+		var map = L.map('map', {
+		center: [45.53992708, 10.22625971],
+		zoom: 6
+		});
+		
+		L.geoJson(bishops, {
+			style: function (feature) {
+				return feature.properties && feature.properties.style;
+			},
+
+			onEachFeature: onEachFeature,
+
+			pointToLayer: function (feature, latlng) {
+				return L.circleMarker(latlng, {
+					radius: 5,
+					fillColor: "#ff0000",
+					color: "#000",
+					weight: 1,
+					opacity: 1,
+					fillOpacity: 0.8
+				});
+			}
+		}).addTo(map);
+
+		function onEachFeature(feature, layer) {
+			var popupContent = "<p>" +
+					feature.properties.name + " <a href=" + feature.properties.uri + ">(" + feature.properties.place +")</a></p>";
+
+			layer.bindPopup(popupContent);
+		}
+
+		L.tileLayer('http://pelagios.org/tilesets/imperium//{z}/{x}/{y}.png', {
+        attribution: 'Tiles: <a href="http://dare.ht.lu.se">DARE 2014</a> (CC-BY-SA) | Provinces: <a href="http://darmc.harvard.edu/">DARMC</a> (CC-BY-NC) | Data: <a href="http://www.vonstockhausen.eu">A. v. Stockhausen</a> with help of <a href="http://pleiades.stoa.org">Pleiades</a> (CC-BY)',
+        minZoom:3,
+        maxZoom:11
+      	}).addTo(map);
+      	
+      	L.esri.dynamicMapLayer({
+        url: "http://cga6.cga.harvard.edu/arcgis/rest/services/darmc/roman/MapServer",
+        layers: [74],
+        opacity: 0.5,
+        position: 'back'
+	      }).addTo(map);
+
+	</script>
+</body>
+</html>
