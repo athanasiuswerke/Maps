@@ -73,7 +73,7 @@
     <script>
         var geojsonMarkerOptions1 = {
                  radius: 5,
-                 fillColor: "grey",
+                 fillColor: "white",
                  color: "#000",
                  weight: 1,
                  opacity: 1,
@@ -88,7 +88,7 @@
             onEachFeature: onEachFeature,
 
             pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng,geojsonMarkerOptions1);
+                return L.circleMarker(latlng,geojsonMarkerOptions1).bindLabel(feature.properties.name, {noHide: false, direction: 'auto', offset: [6,-6]});
             }
         });
 
@@ -100,7 +100,7 @@
             onEachFeature: onEachFeature,
 
             pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng, geojsonMarkerOptions1);
+                return L.circleMarker(latlng, geojsonMarkerOptions1).bindLabel(feature.properties.name + " (" + feature.properties.province + ")", {noHide: false, direction: 'auto', offset: [6,-6]});
                  },
 	        style:getColor
         });
@@ -113,7 +113,7 @@
             onEachFeature: onEachFeature,
 
             pointToLayer: function (feature, latlng) {
-                return L.circleMarker(latlng,geojsonMarkerOptions1);
+                return L.circleMarker(latlng,geojsonMarkerOptions1).bindLabel(feature.properties.name, {noHide: false, direction: 'auto', offset: [6,-6]});
             }
         });
 	
@@ -151,7 +151,7 @@
 
 	
         function onEachFeature(feature, layer) {
-            var popupContent = "<a href=" + feature.properties.uri + ">" + feature.properties.name +"<\/a> (" + feature.properties.province + ")";
+            var popupContent = "<a href=" + feature.properties.uri + " target=\"_blank\">Ort in Pleiades-Datenbank<\/a>";
 
             layer.bindPopup(popupContent);
         }
@@ -193,7 +193,7 @@
         };
 
         var overlayMaps = {
-		  "Teilnehmer auf Liste": bishops,
+		  "Teilnehmer entsprechend der Liste": bishops,
 		  "Sonstige Teilnehmer": others, 
 		  "Makedonianer": macedonians,
 		  "Provinzen (ca. a. 303–324!)": provinces1,		  
@@ -205,8 +205,8 @@
         }).addTo(map);
         
         L.control.scale({position: 'bottomright'}).addTo(map);
-
-        var marker = L.marker([41.008547999999998, 28.979938000000001]).addTo(map)
+		  
+        var marker = L.marker([41.008547999999998, 28.979938000000001]).addTo(map).bindLabel("Konstantinopel", {noHide: false, direction: 'auto', offset: [-40,-55]})
         .showLabel();
     </script>
 </body>
