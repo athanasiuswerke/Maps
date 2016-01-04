@@ -227,3 +227,43 @@ var bishops = {
 			}
 ]
 };
+
+var homoeans = {
+    "type": "FeatureCollection",
+    "features": [ 
+		{ 
+			"type": "Feature", 
+			"properties": {
+			"name": "Palladius", 
+			"place": "Ratiaria",
+			"uri": "http://pleiades.stoa.org/places/207376"
+			}, 
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [22.904855999999999, 43.817397] 
+				}
+		},		{ 
+			"type": "Feature", 
+			"properties": {
+			"name": "Secundianus", 
+			"place": "Singidunum",
+			"uri": "http://pleiades.stoa.org/places/207443"
+			}, 
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [20.450299999999999, 44.823599999999999] 
+				}
+		},		{ 
+			"type": "Feature", 
+			"properties": {
+			"name": "Attalus (Presbyter)", 
+			"place": "Poetovio",
+			"uri": "http://pleiades.stoa.org/places/197446"
+			}, 
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [15.86998, 46.419984999999997] 
+				}
+		}
+]
+};
