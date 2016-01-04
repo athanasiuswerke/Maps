@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Synode von Konstantinopel 381</title>
+    <meta content=
+    "Map of the participants at the synod of Constantinople in 381" name=
+    "description">
+    <meta content="Map,Synod,Constantinople,381" name="keywords">
+    <meta content="Annette von Stockhausen" name="author">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <style type="text/css">
+    p {font-family: sans-serif;}
+    h1 {font-family: sans-serif;
+        font-size: 150%;}
+    .info {
+        padding: 6px 8px;
+        font: 10px/12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-weight: bold;
+        background: white;
+        background: rgba(255,255,255,0.8);
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        border-radius: 5px;
+        }
+    .info h4 {
+        margin: 0 0 5px;
+    font-size: 120%; 
+        color: #777;
+        }
+    .legend {
+        line-height: 14px;
+        color: #555;
+        }
+    .legend i {
+        width: 18px;
+        height: 18px;
+        float: left;
+        margin-right: 8px;
+        opacity: 0.7;
+    }
+    .leaflet-label {
+    background: rgb(235, 235, 235);
+    background: rgba(235, 235, 235, 0.81);
+    display: block;
+    font: 10px/12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #555;
+    padding: 1px 3px;
+    position: absolute;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 6;
+    }
+    </style>
+    <link href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" rel=
+    "stylesheet">
+</head>
+<body>
+    <h1>Teilnehmer der Synode von Konstantinopel 381</h1>
+    <div id="map" style="height: 550px"></div>
+    <script src="constantinople-381.js" type="text/javascript">
+    </script> 
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js">
+    </script> 
+    <script src="https://cdn.jsdelivr.net/leaflet.esri/1.0.0/esri-leaflet.js">
+    </script> 
+    <script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js">
+    </script> 
+    <script>
+        var geojsonMarkerOptions1 = {
+                 radius: 5,
+                 fillColor: "grey",
+                 color: "#000",
+                 weight: 1,
+                 opacity: 1,
+                 fillOpacity: 0.8
+                   };
+		   
+        var macedonians = L.geoJson(macedonians, {
+            style: function (feature) {
+                return feature.properties && feature.properties.style;
+            },
+
+            onEachFeature: onEachFeature,
+
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng,geojsonMarkerOptions1);
+            }
+        });
+
+        var bishops = L.geoJson(bishops, {
+            style: function (feature) {
+                return feature.properties && feature.properties.style;
+            },
+
+            onEachFeature: onEachFeature,
+
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, geojsonMarkerOptions1);
+                 },
+	        style:getColor
+        });
+
+        var others = L.geoJson(others, {
+            style: function (feature) {
+                return feature.properties && feature.properties.style;
+            },
+
+            onEachFeature: onEachFeature,
+
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng,geojsonMarkerOptions1);
+            }
+        });
+	
+         function getColor (feature) {
+                    switch (feature.properties.province) {
+                        case 'Europa' : return {fillColor: "#330000"};
+                        case 'Aegyptus' : return {fillColor: "#FFCC00"};
+                        case 'Palaestina': return {fillColor: "#006600"};
+                        case 'Phoenice' : return {fillColor: "#FF3300"};
+                        case 'Syria' : return {fillColor: "#99CCFF"};
+                        case 'Arabia': return {fillColor: "#33FF00"}; 	
+                        case 'Osrhoene' : return {fillColor: "#66FF00"};
+                        case 'Mesopotamia' : return {fillColor: "#FFFF00"};
+                        case 'Augustoeuphratesia': return {fillColor: "#FF0000"}; 
+                        case 'Cilicia' : return {fillColor: "#CCFFCC"};
+                        case 'Cappadocia' : return {fillColor: "#663300"};
+                        case 'Armenia minor': return {fillColor: "#33CCFF"}; 
+                        case 'Isauria' : return {fillColor: "#33CC00"};
+                        case 'Cyprus' : return {fillColor: "#339900"};
+                        case 'Pamphylia': return {fillColor: "#FF6600"}; 
+                        case 'Lycaonia' : return {fillColor: "#CC33FF"};
+                        case 'Pisidia' : return {fillColor: "#669900"};
+                        case 'Lycia': return {fillColor: "#66CC00"}; 
+                        case 'Phrygia Salutaria' : return {fillColor: "#CC99FF"};
+                        case 'Phrygia Pacatiane' : return {fillColor: "#0066FF"};
+                        case 'Caria': return {fillColor: "#660000"}; 
+                        case 'Bithynia' : return {fillColor: "#333300"};
+                        case 'Pontus Amasiae' : return {fillColor: "#9933FF"};
+                        case 'Moesia': return {fillColor: "#FF9900"}; 
+                        case 'Scythia' : return {fillColor: "#0000FF"};
+                        case 'Haemimontus' : return {fillColor: "#666600"};
+                        case 'Pontus Polemoniacus' : return {fillColor: "#FF0066"};
+        }
+             };
+
+	
+        function onEachFeature(feature, layer) {
+            var popupContent = "<a href=" + feature.properties.uri + ">" + feature.properties.name +"<\/a> (" + feature.properties.province + ")";
+
+            layer.bindPopup(popupContent);
+        }
+        
+        var dare= L.tileLayer('http://pelagios.org/tilesets/imperium/{z}/{x}/{y}.png', {
+        attribution: 'Tiles: <a href="http://dare.ht.lu.se">DARE 2014<\/a> (CC-BY-SA) | Provinces: <a href="http://darmc.harvard.edu/">DARMC</a> (CC-BY-NC) | Data: <a href="http://www.vonstockhausen.eu">A. v. Stockhausen</a> with help of <a href="http://pleiades.stoa.org">Pleiades</a> (CC-BY)'  +     ' | Source: <a href="http://www.athanasius.theologie.uni-erlangen.de/aw-III-6.html">AW III 6, Dok. 92.5</a>',
+        minZoom:3,
+        maxZoom:11
+        });
+        
+        var awmc = L.tileLayer('http://a.tiles.mapbox.com/v3/isawnyu.map-knmctlkh/{z}/{x}/{y}.png', {
+        attribution: 'Tiles: <a href="http://www.awmc.unc.edu" target="_blank">AWMC<\/a> (CC-BY-NC)' + 
+                ' | Provinces: <a href="http://darmc.harvard.edu/">DARMC</a> (CC-BY-NC) | Data: <a href="http://www.vonstockhausen.eu">A. v. Stockhausen</a> with help of <a href="http://pleiades.stoa.org">Pleiades</a> (CC-BY)' +
+                ' | Source: <a href="http://www.athanasius.theologie.uni-erlangen.de/aw-III-6.html">AW III 6, Dok. 92.5</a>'});
+
+       var provinces1 = L.esri.dynamicMapLayer({
+        url: "http://cga6.cga.harvard.edu/arcgis/rest/services/darmc/roman/MapServer",
+        layers: [74],
+        opacity: 0.5,
+        position: 'back'
+          });
+		  
+	var provinces2 = L.esri.dynamicMapLayer({
+        url: "http://cga6.cga.harvard.edu/arcgis/rest/services/darmc/roman/MapServer",
+        layers: [75],
+        opacity: 0.5,
+        position: 'back'
+          });
+          
+        var map = L.map('map', {
+        center: [36.008547999999998, 30.979938000000001],
+        zoom: 5,
+        layers: [dare,bishops,others]
+        });
+        
+        var baseMaps = {
+            "Digital Atlas of the Roman Empire": dare,
+            "Ancient World Mapping Center": awmc
+        };
+
+        var overlayMaps = {
+		  "Teilnehmer auf Liste": bishops,
+		  "Sonstige Teilnehmer": others, 
+		  "Makedonianer": macedonians,
+		  "Provinzen (ca. a. 303–324!)": provinces1,		  
+		  "Provinzen (ca. a. 500!)": provinces2
+        };
+        
+        L.control.layers(baseMaps, overlayMaps, {
+        collapsed: false
+        }).addTo(map);
+        
+        L.control.scale({position: 'bottomright'}).addTo(map);
+
+        var marker = L.marker([41.008547999999998, 28.979938000000001]).addTo(map)
+        .showLabel();
+    </script>
+</body>
+</html>
