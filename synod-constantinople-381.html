@@ -63,6 +63,8 @@
     <h1>Teilnehmer der Synode von Konstantinopel 381</h1>
     <div id="map" style="height: 550px"></div>
     <script src="constantinople-381.js" type="text/javascript">
+    </script>
+    <script src="pleiades-regions.js" type="text/javascript">
     </script> 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js">
     </script> 
@@ -155,7 +157,42 @@
 
             layer.bindPopup(popupContent);
         }
-        
+
+          var provinces3 = L.geoJson(pleiades, {
+	  color: "transparent", opacity: 0.5, weight: 1,
+	  style: function(feature) {
+          switch (feature.properties.name) {
+	                case 'Europa' : return {color: "#330000"};
+                        case 'Aegyptus' : return {color: "#FFCC00"};
+                        case 'Palaestina': return {color: "#006600"};
+                        case 'Phoenice' : return {color: "#FF3300"};
+                        case 'Syria Coele' : return {color: "#99CCFF"};
+                        case 'Arabia': return {color: "#33FF00"}; 	
+                        case 'Osrhoene' : return {color: "#66FF00"};
+                        case 'Mesopotamia' : return {color: "#FFFF00"};
+                        case 'Augustoeuphratesia': return {color: "#FF0000"}; 
+                        case 'Cilicia' : return {color: "#CCFFCC"};
+                        case 'Cappadocia' : return {color: "#663300"};
+                        case 'Armenia minor': return {color: "#33CCFF"}; 
+                        case 'Isauria' : return {color: "#33CC00"};
+                        case 'Cyprus' : return {color: "#339900"};
+                        case 'Pamphylia': return {color: "#FF6600"}; 
+                        case 'Lycaonia' : return {color: "#CC33FF"};
+                        case 'Pisidia' : return {color: "#669900"};
+                        case 'Lycia': return {color: "#66CC00"}; 
+                        case 'Phrygia Salutaria' : return {color: "#CC99FF"};
+                        case 'Phrygia Pacatiane' : return {color: "#0066FF"};
+                        case 'Caria': return {color: "#660000"}; 
+                        case 'Bithynia' : return {color: "#333300"};
+                        case 'Pontus Amasiae' : return {color: "#9933FF"};
+                        case 'Moesia': return {color: "#FF9900"}; 
+                        case 'Scythia' : return {color: "#0000FF"};
+                        case 'Haemimontus' : return {color: "#666600"};
+                        case 'Pontus Polemoniacus' : return {color: "#FF0066"};
+        }
+	  }
+}); 
+	  
         var dare= L.tileLayer('http://pelagios.org/tilesets/imperium/{z}/{x}/{y}.png', {
         attribution: 'Tiles: <a href="http://dare.ht.lu.se">DARE 2014<\/a> (CC-BY-SA) | Provinces: <a href="http://darmc.harvard.edu/">DARMC</a> (CC-BY-NC) | Data: <a href="http://www.vonstockhausen.eu">A. v. Stockhausen</a> with help of <a href="http://pleiades.stoa.org">Pleiades</a> (CC-BY)'  +     ' | Source: <a href="http://www.athanasius.theologie.uni-erlangen.de/aw-III-6.html">AW III 6, Dok. 92.5</a>',
         minZoom:3,
@@ -197,7 +234,8 @@
 		  "Sonstige Teilnehmer": others, 
 		  "Makedonianer": macedonians,
 		  "Provinzen (ca. a. 303–324!)": provinces1,		  
-		  "Provinzen (ca. a. 500!)": provinces2
+		  "Provinzen (ca. a. 500!)": provinces2,
+		  "Provinzen (Pleiades)": provinces3
         };
         
         L.control.layers(baseMaps, overlayMaps, {
