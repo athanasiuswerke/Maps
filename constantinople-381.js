@@ -356,7 +356,7 @@ var bishops = {
 				}
 			},{ "type": "Feature", 
 			"properties": {
-			"name": "(39) Οὐράνιος πόλεως Ἀδραφῆς", 
+			"name": "(39) Οὐράνιος πόλεως Ἀδραδῆς", 
 			"uri": "http://pleiades.stoa.org/places/678002",
 			    "province": "Arabia"
 			}, 
@@ -1276,7 +1276,7 @@ var bishops = {
 				}
 			},{ "type": "Feature", 
 			"properties": {
-			"name": "(132) Αὐξάνικος πόλεως Εὐκαρπίας", 
+			"name": "(132) Αὐξανιανὸς πόλεως Εὐκαρπίας", 
 			"uri": "http://pleiades.stoa.org/places/609378",
 			    "province": "Phrygia Salutaria"
 			}, 
